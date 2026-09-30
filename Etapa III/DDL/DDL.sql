@@ -73,3 +73,40 @@ CREATE TABLE Mensaje (
 ALTER TABLE Mensaje
 ADD CONSTRAINT DF_Mensaje_leido DEFAULT 0 FOR leido;
 
+-- TABLA: Carrito
+CREATE TABLE Carrito (
+    id_carrito INT IDENTITY(1,1) NOT NULL,
+    id_usuario INT NOT NULL,
+
+    CONSTRAINT PK_Carrito PRIMARY KEY (id_carrito),
+    CONSTRAINT FK_Carrito_Usuario FOREIGN KEY (id_usuario) 
+        REFERENCES Usuario(id_usuario)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- TABLA: Pedido
+CREATE TABLE Pedido (
+    id_pedido INT IDENTITY(1,1) NOT NULL,
+    total DECIMAL(12,2) NOT NULL,
+    fecha_pedido DATETIME NOT NULL CONSTRAINT DF_Pedido_fecha DEFAULT GETDATE(),
+    estado VARCHAR(30) NOT NULL CONSTRAINT DF_Pedido_estado DEFAULT 'Pendiente',
+    id_direccion INT NOT NULL,
+    id_carrito INT NOT NULL,
+
+    CONSTRAINT PK_Pedido PRIMARY KEY (id_pedido),
+    CONSTRAINT UQ_Pedido_Carrito UNIQUE (id_carrito), -- Evita duplicar el pedido para un mismo carrito
+    CONSTRAINT CK_Pedido_Total CHECK (total >= 0.00),
+    CONSTRAINT CK_Pedido_Estado CHECK (
+        estado IN ('Pendiente', 'Pagado', 'En Preparación', 'Enviado', 'Entregado', 'Cancelado')
+    ),
+    CONSTRAINT FK_Pedido_Direccion FOREIGN KEY (id_direccion) 
+        REFERENCES Direccion(id_direccion)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE,
+    CONSTRAINT FK_Pedido_Carrito FOREIGN KEY (id_carrito) 
+        REFERENCES Carrito(id_carrito)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE
+);
+
