@@ -5,6 +5,8 @@ VALUES
 ('Administrador'),
 ('Cliente');
 
+SELECT * FROM Tipo_usuario;
+
 -------INSERTAR USUARIO-------
 INSERT INTO Usuario (nombre_usuario, correo, contrasenia, id_tipoUsuario)
 VALUES
@@ -16,6 +18,8 @@ VALUES
 ('Sofia Martinez', 'sofia.martinez@gmail.com', 'Sofia1234', 2),
 ('Carlos Romero', 'carlos.romero@gmail.com', 'Carlos1234', 2),
 ('Lucia Sanchez', 'lucia.sanchez@gmail.com', 'Lucia1234', 2);
+
+SELECT * FROM Usuario;
 
 ----------INSERTAR TELEFONO---------
 
@@ -29,6 +33,8 @@ VALUES
 ('3794000006', 6),
 ('3794000007', 7),
 ('3794000008', 8);
+
+SELECT * FROM Telefono;
 
 --------INSERTAR MENSAJES----------
 
@@ -57,4 +63,6 @@ VALUES
 
 ('Laura Garcia', 'laura@gmail.com', 'Envios',
 'Quisiera consultar por los envios disponibles.', '2026-09-29 19:20:00', '3794222222', NULL);
+
+SELECT * FROM Mensaje;
 
