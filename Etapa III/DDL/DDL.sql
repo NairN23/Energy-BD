@@ -138,6 +138,43 @@ ADD CONSTRAINT DF_Producto_destacado DEFAULT 0 FOR destacado;
 ALTER TABLE Producto
 ADD CONSTRAINT DF_Producto_activo DEFAULT 1 FOR activo;
 
+-- TABLA PROVINCIA
+CREATE TABLE Provincia (
+	 id_provincia INT NOT NULL, 
+	nombre VARCHAR(100) NOT NULL, 
+	CONSTRAINT pk_provincia PRIMARY KEY (id_provincia) 
+); 
+-- TABLA CIUDAD
+CREATE TABLE Ciudad ( 
+	id_ciudad INT NOT NULL, 
+	nombre VARCHAR(100) NOT NULL, 
+	CP VARCHAR(10) NOT NULL, id_provincia INT NOT NULL, 
+	CONSTRAINT pk_ciudad PRIMARY KEY (id_ciudad), 
+	CONSTRAINT fk_ciudad_provincia 
+		FOREIGN KEY (id_provincia) REFERENCES  Provincia(id_provincia)
+         			ON UPDATE CASCADE 
+			ON DELETE CASCADE 
+); 
+
+-- TABLA DIRECCION
+CREATE TABLE Direccion (
+ id_direccion INT NOT NULL,
+   	 calle VARCHAR(150) NOT NULL,
+ numero VARCHAR(10) NOT NULL,
+    	barrio VARCHAR(100) NULL,
+   	 id_usuario INT NOT NULL,
+    	id_ciudad INT NOT NULL,
+    	CONSTRAINT pk_direccion PRIMARY KEY (id_direccion),
+   	CONSTRAINT fk_direccion_ciudad 
+        		FOREIGN KEY (id_ciudad) REFERENCES Ciudad(id_ciudad)
+        		ON UPDATE CASCADE 
+       		ON DELETE CASCADE,
+   	 CONSTRAINT fk_direccion_usuario 
+       		 FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+        		ON UPDATE CASCADE 
+        		ON DELETE CASCADE
+);
+
 -- TABLA: Carrito
 CREATE TABLE Carrito (
     id_carrito INT IDENTITY(1,1) NOT NULL,

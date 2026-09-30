@@ -117,3 +117,36 @@ VALUES
 ('Termogenico Clasico 60 caps', 'Producto discontinuado por el proveedor', 21000.00, 0, 0, 10);
 
 SELECT * FROM Producto;
+
+-- CARGAR DATO DE PROVINCIAS, CIUDADES Y DIRECCIONES
+INSERT INTO Provincia (nombre)
+VALUES
+('Corrientes'),
+('Chaco'),
+('Misiones'),
+('Buenos Aires'),
+('Santa Fe'),
+('Cordoba');
+
+INSERT INTO Ciudad (nombre, CP, id_provincia)
+VALUES
+('Corrientes Capital', '3400', 1),
+('Goya', '3450', 1),
+('Paso de los Libres', '3230', 1),
+('Resistencia', '3500', 2),
+('Presidencia Roque Saenz Pena', '3700', 2),
+('Posadas', '3300', 3),
+('Puerto Iguazu', '3370', 3),
+('La Plata', '1900', 4),
+('Mar del Plata', '7600', 4),
+('Rosario', '2000', 5),
+('Cordoba Capital', '5000', 6);
+
+INSERT INTO Direccion (calle, numero, barrio, id_usuario, id_ciudad)
+VALUES
+('Av. 3 de Abril', '1250', 'Centro', 1, 1),
+('Junin', '850', 'Deportes', 1, 1),
+('Av. Sarmiento', '450', 'Villa San Martin', 2, 4),
+('Felix de Azara', '1620', 'Centro', 3, 6),
+('Calle 7', '820', 'Plaza Paso', 2, 8),
+('Av. Colon', '1420', 'Alberdi', 3, 11);
