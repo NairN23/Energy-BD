@@ -66,3 +66,54 @@ VALUES
 
 SELECT * FROM Mensaje;
 
+-- =========================================================
+-- CARGA DE CATEGORIAS
+-- =========================================================
+
+INSERT INTO Categoria (nombre_categoria, descripcion)
+VALUES
+('Proteinas', 'Suplementos proteicos en polvo y barras'),
+('Vitaminas', 'Complejos multivitaminicos y minerales'),
+('Aminoacidos', 'BCAA, glutamina y aminoacidos esenciales'),
+('Creatinas', 'Monohidrato de creatina y derivados'),
+('Pre-entrenamiento', 'Energizantes y potenciadores de rendimiento'),
+('Combos', 'Packs promocionales de varios productos'),
+('Ganadores de peso', 'Suplementos hipercaloricos para aumento de masa'),
+('Colagenos', 'Colageno hidrolizado y suplementos articulares'),
+('Accesorios', 'Shakers, dosificadores y articulos de entrenamiento');
+
+-- Categoria dada de baja logica: sus productos no se muestran en el catalogo (RN06)
+INSERT INTO Categoria (nombre_categoria, descripcion, activa)
+VALUES ('Quemadores', 'Linea discontinuada', 0);
+
+SELECT * FROM Categoria;
+
+
+-- =========================================================
+-- CARGA DE PRODUCTOS
+-- =========================================================
+
+INSERT INTO Producto (nombre_producto, descripcion, precio, stock, destacado, id_categoria)
+VALUES
+('Whey Protein 1kg Vainilla', 'Proteina de suero concentrada, 24g de proteina por porcion', 45900.00, 40, 1, 1),
+('Whey Protein 1kg Chocolate', 'Proteina de suero concentrada sabor chocolate', 45900.00, 35, 1, 1),
+('Caseina Nocturna 900g', 'Proteina de absorcion lenta para la noche', 52300.00, 18, 0, 1),
+('Barra Proteica 60g', 'Barra con 20g de proteina, sabor cookies', 3200.00, 150, 0, 1),
+('Multivitaminico Diario 60 caps', 'Complejo de vitaminas y minerales esenciales', 18700.00, 60, 0, 2),
+('Vitamina C 1000mg 100 caps', 'Refuerzo del sistema inmunologico', 12400.00, 80, 0, 2),
+('Vitamina D3 2000UI 90 caps', 'Soporte oseo e inmunitario', 14900.00, 45, 0, 2),
+('BCAA 2:1:1 300g', 'Aminoacidos ramificados en polvo sabor limon', 29800.00, 25, 1, 3),
+('Glutamina 500g', 'L-glutamina pura para recuperacion muscular', 26500.00, 30, 0, 3),
+('Creatina Monohidrato 300g', 'Creatina micronizada sin sabor', 33400.00, 50, 1, 4),
+('Creatina Monohidrato 1kg', 'Formato economico de creatina micronizada', 89900.00, 12, 0, 4),
+('Pre-Workout Explosivo 250g', 'Formula energizante con cafeina y beta-alanina', 38700.00, 22, 1, 5),
+('Oxido Nitrico 120 caps', 'Potenciador de la congestion muscular', 31200.00, 0, 0, 5),
+('Combo Iniciacion Fitness', 'Whey Protein 1kg + Creatina 300g + Multivitaminico', 92500.00, 15, 1, 6),
+('Combo Fuerza Total', 'Whey Protein 1kg + BCAA 300g + Pre-Workout 250g', 108400.00, 8, 1, 6);
+
+-- Producto inactivo: no se muestra en el catalogo publico ni se agrega al carrito (RN02)
+INSERT INTO Producto (nombre_producto, descripcion, precio, stock, activo, id_categoria)
+VALUES
+('Termogenico Clasico 60 caps', 'Producto discontinuado por el proveedor', 21000.00, 0, 0, 10);
+
+SELECT * FROM Producto;

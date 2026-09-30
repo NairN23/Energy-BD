@@ -73,3 +73,67 @@ CREATE TABLE Mensaje (
 ALTER TABLE Mensaje
 ADD CONSTRAINT DF_Mensaje_leido DEFAULT 0 FOR leido;
 
+-- =========================================================
+-- TABLA CATEGORIA
+-- =========================================================
+
+CREATE TABLE Categoria (
+    id_categoria INT IDENTITY(1,1) NOT NULL,
+    nombre_categoria VARCHAR(60) NOT NULL,
+    descripcion VARCHAR(200) NULL,
+    activa INT NOT NULL,
+
+    CONSTRAINT PK_Categoria PRIMARY KEY (id_categoria),
+
+    CONSTRAINT UQ_Categoria_nombre UNIQUE (nombre_categoria),
+
+    CONSTRAINT CK_Categoria_activa CHECK (activa IN (0,1))
+);
+
+ALTER TABLE Categoria
+ADD CONSTRAINT DF_Categoria_activa DEFAULT 1 FOR activa;
+
+
+-- =========================================================
+-- TABLA PRODUCTO
+-- =========================================================
+
+CREATE TABLE Producto (
+    id_producto INT IDENTITY(1,1) NOT NULL,
+    nombre_producto VARCHAR(120) NOT NULL,
+    descripcion VARCHAR(500) NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    destacado INT NOT NULL,
+    activo INT NOT NULL,
+    id_categoria INT NOT NULL,
+
+    CONSTRAINT PK_Producto PRIMARY KEY (id_producto),
+
+    CONSTRAINT UQ_Producto_nombre UNIQUE (nombre_producto),
+
+    -- RN02: la cantidad de existencias es un valor entero no negativo
+    CONSTRAINT CK_Producto_stock CHECK (stock >= 0),
+
+    -- El precio de venta debe ser estrictamente positivo
+    CONSTRAINT CK_Producto_precio CHECK (precio > 0),
+
+    CONSTRAINT CK_Producto_destacado CHECK (destacado IN (0,1)),
+
+    CONSTRAINT CK_Producto_activo CHECK (activo IN (0,1)),
+
+    -- RN06: todo producto pertenece obligatoriamente a una categoria valida
+    CONSTRAINT FK_Producto_Categoria FOREIGN KEY (id_categoria)
+        REFERENCES Categoria(id_categoria)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION
+);
+
+ALTER TABLE Producto
+ADD CONSTRAINT DF_Producto_stock DEFAULT 0 FOR stock;
+
+ALTER TABLE Producto
+ADD CONSTRAINT DF_Producto_destacado DEFAULT 0 FOR destacado;
+
+ALTER TABLE Producto
+ADD CONSTRAINT DF_Producto_activo DEFAULT 1 FOR activo;
