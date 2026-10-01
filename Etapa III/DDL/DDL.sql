@@ -174,3 +174,48 @@ CREATE TABLE Direccion (
         		ON UPDATE CASCADE 
         		ON DELETE CASCADE
 );
+
+-- TABLA DETALLE_PEDIDO
+CREATE TABLE Detalle_pedido( 
+	id_pedido INT NOT NULL,
+	id_producto INT NOT NULL,
+	cantidad INT NOT NULL,
+	precioUnitario DECIMAL(10,2) NOT NULL,
+
+    -- Restricción de Clave Primaria compuesta entre las claves primarias de pedido y producto
+    CONSTRAINT PK_Detalle PRIMARY KEY (id_pedido, id_producto),
+
+    -- Clave Foránea hacia Pedido
+    CONSTRAINT FK_Pedido FOREIGN KEY (id_pedido) REFERENCES Pedido (id_pedido),
+
+    -- Clave Foránea hacia Producto
+	CONSTRAINT FK_Producto FOREIGN KEY (id_pedido) REFERENCES Producto (id_productos),
+
+    -- La cantidad de productos debe ser estrictamente positivo
+	CONSTRAINT CK_cantidad CHECK (cantidad > 0),
+
+	-- El precio unitario del producto no debe ser negativo
+	CONSTRAINT CK_precio_unitario CHECK (precioUnitario > 0,0),
+)
+
+-- TABLA PAGO
+CREATE TABLE Pago (
+	id_pago INT NOT NULL,
+	comprobante_pago VARCHAR(30) NOT NULL,
+	fecha_acreditacion date NOT NULL, 
+	metodoPago VARCHAR(10) NOT NULL, 
+	estado VARCHAR(30) NOT NULL,
+	id_pedido INT NOT NULL,
+
+	-- Restricción de Clave Primaria 
+	CONSTRAINT PK_Pago PRIMARY KEY (id_pago),
+
+    -- Clave Foránea hacia Pedido 
+    CONSTRAINT FK_Pedido FOREIGN KEY REFERENCES Pedido (id_pedido)
+
+    -- Restricción de unicidad de comprobante de pago
+    CONSTRAINT UQ_comprobanteago UNIQUE (comprobante_pago), 
+
+    -- Definimos la fecha de hoy como la por defecto en fecha acreditación 
+    CONSTRAINT DF_pago_fecha DEFAULT GETDATE() FOR fecha_acreditacion
+)
