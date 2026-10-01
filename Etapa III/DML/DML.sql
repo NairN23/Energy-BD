@@ -150,3 +150,33 @@ VALUES
 ('Felix de Azara', '1620', 'Centro', 3, 6),
 ('Calle 7', '820', 'Plaza Paso', 2, 8),
 ('Av. Colon', '1420', 'Alberdi', 3, 11);
+
+-- POBLADO DE TABLA: Pedido (10 registros)
+INSERT INTO Pedido (total, fecha_pedido, estado, id_direccion, id_carrito) VALUES
+(15400.50, '2026-09-01 10:30:00', 'Entregado',       1, 1),
+(8500.00,  '2026-09-03 14:15:00', 'Entregado',       1, 2),
+(23100.00, '2026-09-10 09:45:00', 'Enviado',         2, 3),
+(4200.75,  '2026-09-12 11:20:00', 'Pagado',          2, 4),
+(99900.00, '2026-09-15 16:00:00', 'En Preparación',  3, 5),
+(1250.00,  '2026-09-18 18:30:00', 'Pendiente',       3, 6),
+(34000.00, '2026-09-20 08:00:00', 'Entregado',       4, 7),
+(6700.00,  '2026-09-22 12:10:00', 'Cancelado',       4, 8),
+(18900.25, '2026-09-25 15:50:00', 'Pagado',          5, 9),
+(51200.00, '2026-09-28 19:05:00', 'Pendiente',       5, 10);
+
+SELECT * FROM Pedido
+
+-- POBLADO DE TABLA: Detalle_pedido (10 registros)
+INSERT INTO Detalle_pedido (id_pedido, id_producto, cantidad, precioUnitario) VALUES
+(1, 1, 1, 45900.00), 
+(1, 10, 1, 33400.00),
+(2, 4, 2, 3200.00),  
+(3, 14, 1, 92500.00),
+(4, 6, 1, 12400.00), 
+(5, 14, 1, 108400.00),
+(6, 4, 1, 3200.00),  
+(7, 10, 1, 33400.00),
+(8, 8, 1, 29800.00), 
+(9, 5, 1, 18700.00); 
+
+SELECT * FROM Detalle_pedido
