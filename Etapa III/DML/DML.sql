@@ -151,6 +151,7 @@ VALUES
 ('Calle 7', '820', 'Plaza Paso', 2, 8),
 ('Av. Colon', '1420', 'Alberdi', 3, 11);
 
+<<<<<<< HEAD
 -- POBLADO DE TABLA: Pedido (10 registros)
 INSERT INTO Pedido (total, fecha_pedido, estado, id_direccion, id_carrito) VALUES
 (15400.50, '2026-09-01 10:30:00', 'Entregado',       1, 1),
@@ -180,3 +181,38 @@ INSERT INTO Detalle_pedido (id_pedido, id_producto, cantidad, precioUnitario) VA
 (9, 5, 1, 18700.00); 
 
 SELECT * FROM Detalle_pedido
+=======
+-----------------------------------------------
+-- POBLADO Y CONSULTA DE TABLA: Carrito
+-----------------------------------------------
+INSERT INTO Carrito (id_usuario) VALUES
+(1),  -- Carrito 1 para Administrador
+(2),  -- Carrito 2 para Ana Lopez
+(3),  -- Carrito 3 para Juan Perez
+(4),  -- Carrito 4 para Maria Gomez
+(5),  -- Carrito 5 para Pedro Fernandez
+(6),  -- Carrito 6 para Sofia Martinez
+(7),  -- Carrito 7 para Carlos Romero
+(8),  -- Carrito 8 para Lucia Sanchez
+(2),  -- Carrito 9 (segundo carrito/histórico) para Ana Lopez
+(3);  -- Carrito 10 (segundo carrito/histórico) para Juan Perez
+
+SELECT * FROM Carrito;
+
+-----------------------------------------------
+-- POBLADO Y CONSULTA DE TABLA: Pedido
+-----------------------------------------------
+INSERT INTO Pedido (total, fecha_pedido, estado, id_direccion, id_carrito) VALUES
+(15400.50, '2026-09-01 10:30:00', 'Entregado',       1, 1),
+(8500.00,  '2026-09-03 14:15:00', 'Entregado',       2, 2),
+(23100.00, '2026-09-10 09:45:00', 'Enviado',         3, 3),
+(4200.75,  '2026-09-12 11:20:00', 'Pagado',          4, 4),
+(99900.00, '2026-09-15 16:00:00', 'En Preparación',  5, 5),
+(1250.00,  '2026-09-18 18:30:00', 'Pendiente',       6, 6),
+(34000.00, '2026-09-20 08:00:00', 'Entregado',       7, 7),
+(6700.00,  '2026-09-22 12:10:00', 'Cancelado',       8, 8),
+(18900.25, '2026-09-25 15:50:00', 'Pagado',          9, 9),
+(51200.00, '2026-09-28 19:05:00', 'Pendiente',       10, 10);
+
+SELECT * FROM Pedido;
+>>>>>>> 7d0a5e9cb260c85246377344673e1b26e67b0530
