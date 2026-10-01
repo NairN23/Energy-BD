@@ -210,5 +210,6 @@ CREATE TABLE Pedido (
         REFERENCES Carrito(id_carrito)
         ON DELETE NO ACTION
         ON UPDATE CASCADE
+	
 );
 
