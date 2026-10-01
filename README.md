@@ -31,8 +31,3 @@ En esta etapa se trabajó sobre el modelado de la base de datos del sistema, inc
 En esta etapa se desarrolla la implementación de la base de datos a través de scripts SQL, incluyendo la definición de estructuras, datos iniciales y validaciones del modelo físico.
 
 [Ir a Etapa III](https://github.com/NairN23/Energy-BD/tree/ETAPA_III)
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 7d0a5e9cb260c85246377344673e1b26e67b0530
