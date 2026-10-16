@@ -22,3 +22,14 @@ FROM Producto p
 INNER JOIN Categoria c ON p.id_categoria = c.id_categoria
 WHERE p.activo = 1 AND p.stock > 0 AND c.activa = 1;
 GO
+
+-- realizamos una consulta para obtener el total de productos, precio promedio y stock de los productos activos por categoria
+SELECT 
+    c.nombre_categoria,
+    COUNT(p.id_producto) AS total_productos,
+    ROUND(AVG(p.precio), 2) AS precio_promedio,
+    SUM(p.stock) AS stock_total
+FROM Categoria c
+LEFT JOIN Producto p ON c.id_categoria = p.id_categoria AND p.activo = 1
+GROUP BY c.id_categoria, c.nombre_categoria;
+GO
