@@ -33,3 +33,20 @@ FROM Categoria c
 LEFT JOIN Producto p ON c.id_categoria = p.id_categoria AND p.activo = 1
 GROUP BY c.id_categoria, c.nombre_categoria;
 GO
+
+-- Se realiza consulta en donde se unen la pedidos, productos e items de productos para sumar la cantidad de productos por item de pedidos no cancelados
+-- agrupando la repuestas por producto para luego ordenar la repuestas por unidades vendias
+
+SELECT TOP 5
+    p.id_producto,
+    p.nombre_producto,
+    SUM(dp.cantidad) AS unidades_vendidas,
+    SUM(dp.cantidad * dp.precioUnitario) AS total_recaudado
+FROM Producto p
+INNER JOIN Detalle_pedido dp ON p.id_producto = dp.id_producto
+INNER JOIN Pedido ped ON dp.id_pedido = ped.id_pedido
+WHERE ped.fecha_pedido >= DATEADD(month, -1, GETDATE())
+  AND ped.estado NOT IN ('Cancelado')
+GROUP BY p.id_producto, p.nombre_producto
+ORDER BY unidades_vendidas DESC;
+GO
