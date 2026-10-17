@@ -31,3 +31,9 @@ En esta etapa se trabajó sobre el modelado de la base de datos del sistema, inc
 En esta etapa se desarrolla la implementación de la base de datos a través de scripts SQL, incluyendo la definición de estructuras, datos iniciales y validaciones del modelo físico.
 
 [Ir a Etapa III](https://github.com/NairN23/Energy-BD/tree/ETAPA_III)
+
+### Etapa IV - Consultas y Casos de Uso
+
+En esta etapa se desarrollan y prueban consultas SQL sobre la base de datos Energy, con el objetivo de obtener información relevante para la gestión del sistema. Se incluyen consultas de facturación, reportes agregados de ventas y consultas avanzadas mediante relaciones entre tablas, funciones de agregación y filtros condicionales.
+
+[Ir a Etapa IV](https://github.com/NairN23/Energy-BD/tree/ETAPA_IV)
